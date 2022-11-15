@@ -1,0 +1,47 @@
+<mat-card>
+    <mat-card-content>
+  <div class="recognition">
+    <form [formGroup]="countries" (ngSubmit)="addCountry()" name="sendmail">
+        <div class="sourceUser">
+            <mat-form-field class="full-width" appearance="outline">
+            <mat-label> Country Name</mat-label>
+            <input
+            matInput
+            required
+            formControlName="countryName"/>
+        </mat-form-field>
+        </div>
+    <div class="sourceUser">
+        <mat-form-field class="full-width" appearance="outline">
+        <mat-label> Country Short Name</mat-label>
+            <input
+            matInput
+            required
+            formControlName="countryShortName"/>
+        </mat-form-field>
+    </div>
+    <div class="sourceUser">
+        <mat-form-field class="full-width" appearance="outline">
+        <mat-label> Currency</mat-label>
+            <input
+            matInput
+            required
+            formControlName="currency"/>
+        </mat-form-field>
+    </div>
+    <div class="sourceUser">
+        <mat-form-field class="full-width" appearance="outline">
+        <mat-label> Country Symbol</mat-label>
+            <input
+            matInput
+            required
+            formControlName="currencySymbol"/>
+        </mat-form-field>
+    </div>
+   
+   
+        <button mat-flat-button >Confirm & Save</button>
+    </form>
+  </div>
+  </mat-card-content>
+  </mat-card>

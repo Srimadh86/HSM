@@ -1,0 +1,39 @@
+<!-- <div mat-dialog-content></div>
+<div mat-dialog-actions>
+
+  <button mat-button cdkFocusInitial>Save</button>
+</div> -->
+
+
+<div mat-dialog-actions>
+  <div *ngIf="data.from == 'update'">
+    <p *ngIf="data.status=='Success'; else showError">Updated Data Successfully</p>
+    <ng-template #showError>
+      <p>Updated Data Failure</p>
+    </ng-template>
+  </div>
+  <div *ngIf="data.from == 'add'">
+    <p *ngIf="data.status=='Success'; else showAddError">Add Data Successfully</p>
+    <ng-template #showAddError>
+      <p>Add Data Failure</p>
+    </ng-template>
+  </div>
+  <div *ngIf="data.from == 'delete'">
+    <p>Are you sure you want to delete the data?</p>
+    <!-- <ng-template #showAddError>
+      <p>Delete Data Failure</p>
+    </ng-template> -->
+  </div>
+
+</div>
+<div>
+  <button *ngIf="data.from == 'update'" mat-raised-button [mat-dialog-close]="true" (click)="submit()">
+     OK
+  </button>
+  <button *ngIf="data.from == 'add'" mat-raised-button [mat-dialog-close]="true" (click)="submitadd()">
+    OK
+ </button>
+ <button *ngIf="data.from == 'delete'" mat-raised-button [mat-dialog-close]="true" (click)="deleteData()">
+  Delete
+</button>
+</div>

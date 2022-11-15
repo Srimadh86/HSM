@@ -1,0 +1,94 @@
+<section>
+  <div class="signin">
+    <div *ngIf="error" class="error">
+      <p>{{error}}</p>
+    </div>
+    <div *ngIf="isLoading" class="spinner">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div class="login_container row">
+      <div class="col-6 left_widget" >
+        <div class="logo">
+          <img src="../../../assets/images/hmslogo.png" alt="">
+        </div>
+        <div class="row align-items-center justify-content-center" style="height: 100vh;">
+          <div class="col-6 form_container">
+            <div class="form_head text-center mb-3">
+              <h2>Welcome back</h2>
+              <p>Please enter your details</p>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="formSubmit()">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Login ID</label>
+                <input class="form-control" 
+                      type="text"
+                      placeholder="Email / Phone Number"
+                      formControlName="lanId"
+                >
+              </div>
+              <div class="mb-3">
+                <label for="InputPassword1" class="form-label">Password</label>
+                <input type="password" 
+                placeholder="Enter Password"
+                formControlName="password"
+                class="form-control" id="InputPassword1">
+              </div>
+              <div class="mb-3 text-end">
+                <a href="#" >Forgot password?</a>
+              </div>
+              <button type="submit" class="btn btn-primary submit_btn mb-2">LOGIN</button>
+              <div class="text-center">
+                <p>
+                  Don’t have an account? <span>
+                    <a href="#">Sign up</a>
+                  </span> 
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+       
+        
+      </div>
+      <div  class="col-6 image_container">
+        <div class="image">
+          <img src="../../../assets/images/loginpagebg.png" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- <form class="loginform" [formGroup]="loginForm" (ngSubmit)="formSubmit()">
+      <mat-grid-tile>
+      </mat-grid-tile>
+      <mat-card class="card">
+        <mat-card-title class="title">CBSI Gratitude Book</mat-card-title>
+        <div class="controls-container">
+            <mat-form-field appearance="fill" class="col-12">
+                <mat-label>Lan ID</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="Enter Lan-ID"
+                  formControlName="lanId"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="col-12">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  placeholder="Enter Password"
+                  formControlName="password"
+                />
+              </mat-form-field>
+              <button mat-raised-button type="submit" color="primary">Submit</button>
+        </div>
+    </mat-card>  
+    </form> -->
+  
+        
+       
+         
+    
+  </div>
+</section>
+

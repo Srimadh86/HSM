@@ -1,0 +1,21 @@
+<mat-accordion>
+    <mat-expansion-panel class="mb-2">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Pricing Mode
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+    <app-sub-menu></app-sub-menu>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header >
+        <mat-panel-title>
+            Data Management
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-sub-menu2></app-sub-menu2>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+    

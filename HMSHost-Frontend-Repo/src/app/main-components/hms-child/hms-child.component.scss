@@ -1,0 +1,25 @@
+.breadcrumb a {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.table td {
+    background-color: #fff;
+    padding-left: 20px;
+    vertical-align: middle;
+}
+.breadcrumb li:first-child a {
+    text-decoration: underline;
+}
+.form-check-inline {
+    display: inline-flex;
+    margin-right: 1rem;
+}
+.breadcrumb li:nth-last-child(-n+1) a {
+    color: #ccc !important;
+}
+.breadcrumb li a.breadcrumb-item.Active {
+    color: #000;
+}
+.tabtp {
+    white-space: nowrap;
+}

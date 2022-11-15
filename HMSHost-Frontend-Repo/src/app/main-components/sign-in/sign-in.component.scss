@@ -1,0 +1,85 @@
+.signin{
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    .error{
+        position: absolute;
+        min-width: 25%;
+        background: rgba(205, 21, 21, 0.4);
+        padding: 1rem;
+        left: 50%;
+        top: 5%;
+        border-radius: 10px;
+        transform: translate(-50%,0);
+        z-index: 10;
+        transition: ease-in-out 0.2s;
+        p{
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            margin: 0;
+        }
+    }
+    .spinner{
+        left: 0;
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0,0.5);
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .login_container{
+        .left_widget{
+            padding: 1rem 2rem;
+            .logo{
+
+            }
+            .form_container{
+                h2{
+                    font-family: 'Roboto';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 32px;
+                    line-height: 22px;
+                    letter-spacing: 0.5px;
+                    color: #000000;
+                    padding: .5rem 0;
+                }
+                p{
+                    font-family: 'Roboto';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 22px;
+                    letter-spacing: 0.5px;
+                    color: #000000;
+                }
+                form{
+                    input{
+                        font-family: 'Roboto';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 22px;
+                        letter-spacing: 0.5px;
+                        color: #545759;
+                    }
+                }
+            }
+        }
+       
+        .image_container{
+            .image{
+               img{
+                object-fit: cover;
+               }
+            }
+          }
+    }
+   
+ 
+}

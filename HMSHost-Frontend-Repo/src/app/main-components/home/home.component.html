@@ -1,0 +1,60 @@
+<section>
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper"  [ngClass]="status ? 'hide' : 'show'">
+      <div class="sidebar-heading d-flex justify-content-between">
+        <img src="../../../assets//images/sidebar_logo.png" alt="">  
+        <button class="btn" (click)="clickEvent()">
+          <img src="../../../assets//images/menu_btn.png" alt=""> 
+        </button>
+      </div>
+      <div class="list-group">
+        <app-stepper-menu></app-stepper-menu>
+      </div>
+     
+    
+    </div>
+    <!-- /#sidebar-wrapper -->
+  
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+  
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="btn" *ngIf="status == true" (click)="clickEvent()">
+          <img src="../../../assets//images/menu_btn.png" alt=""> 
+        </button>
+        <div class="container-fluid d-flex justify-content-between">
+          <div class="left_side col-6">
+            <h4>Welcome to HMSHost</h4>
+          </div>
+          <div class="right_side col-6 d-flex justify-content-end" >
+            <form class="d-flex">
+              <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+              <button class="btn" type="button">
+                <img src="../../../assets/images/search.png" alt="">
+              </button>
+            </form>
+            <div class="user_menu d-flex align-items-center">
+              <span class="p-2">
+                user name
+              </span>
+              <div class="avatar">
+                <button mat-button [matMenuTriggerFor]="menu"> <img src="../../../assets/images/avatar.png" alt=""></button>
+                <mat-menu #menu="matMenu">
+                  <button mat-raised-button color="danger" (click)="logout()">LOGOUT</button>
+                </mat-menu>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+  
+      <router-outlet></router-outlet>
+    </div>
+    <!-- /#page-content-wrapper -->
+  
+  </div>
+</section>
+<!-- /#wrapper -->
+ 

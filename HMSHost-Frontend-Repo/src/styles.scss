@@ -1,0 +1,191 @@
+
+@import "~../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.mat-typography{
+    margin: 0 !important;
+}
+.mat-typography h2{
+    margin: 0 !important;
+}
+.mat-typography h3{
+    margin: 0 !important;
+}
+.mat-typography h4{
+    margin: 0 !important;
+}
+
+.mat-typography p{
+    margin: 0 !important;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+.submit_btn{
+    width: 100%;
+    color: #FFFFFF;
+    background: #00529B;
+}
+input,button{
+    border-radius: 0 !important;
+}
+section{
+    background:  #F8FBFF;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//*************************************//
+//Custom Css
+//*************************************//
+.mat-dialog-actions {
+    padding: 8px 0;
+    display: block !important;
+}
+.cdk-overlay-pane {
+    height: 300px;
+}
+.cdk-overlay-container .mat-dialog-container {
+    padding: 100px;
+    text-align: center;
+    margin: 0 auto;
+}
+.mat-typography p {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 33px;
+    color: #00529B;
+}
+.mat-dialog-actions {
+    margin-bottom: 0px !important;
+}
+
+/****************************************
+Table css
+****************************************/
+thead th {
+    background-color: #F3F6FB !important;
+    height: 48px;
+    line-height: 30px;
+    color: #626266;
+    font-weight: 500;
+    font-family: 'Roboto';
+}
+app-master-hms tbody td {
+    background-color: #FFFFFF !important;
+    box-shadow: inset 0 0 0 9999px #fff !important;
+}
+th.tsno {
+    background-color: #fff !important;
+    color: #626266;
+    font-weight: 500;
+}
+.table>:not(:last-child)>:last-child>* {
+    border-bottom: 1px solid #EEEEEE;
+    padding: 10px;
+    background-color: #fff;
+}
+app-hms-master td.dnme {
+    background-color: #fff;
+}
+
+td.dnme {
+    cursor: pointer;
+}
+.child-hms td.ng-star-inserted {
+    padding: 15px;
+}
+.pagination {
+    justify-content: flex-end;
+}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #185BC3;
+    border-color: #185BC3;
+}
+.pagination li {
+    margin: 5px;
+}
+.pagination li a.page-link {
+    border-radius: 5px;
+    border-color: #bcbcbc;
+}
+.updcls {
+    float: left;
+    margin-right: 4px;
+}
+td.btsupcls {
+    vertical-align: middle;
+}
+button.edtcls {
+    margin-right: 4px;
+}
+.search-bar {
+    float: left;
+}
+.modal-content {
+    text-align: center;
+}
+.modal-dialog button.btn.btn-primary {
+    background-color: #00498A;
+    border-color: #00498A;
+    padding: 5px 40px;
+    font-size: 18px;
+}
+.modal-content {
+    padding: 20px;
+}
+#deleteModal button.btn.btn-secondary {
+    background-color: #00498A;
+    border-color: #00498A;
+    margin-right: 10px;
+    padding: 5px 40px;
+}
+#deleteModal button.btn.btn-primary.deleno {
+    padding: 3px 40px;
+    color: #000;
+    border: 2px solid #D3D3D3;
+    background-color: #fff;
+}
+.child-hms button.btn.btn-primary.subcls {
+    float: right;
+}
+.form-control:disabled {
+    background-color: #185BC3 !important;
+    opacity: 1 !important;
+    text-align: center;
+    color: #fff;
+    border-radius: 4px !important;
+}
+.pagination a.page-link {
+    padding: 8px 20px;
+}
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

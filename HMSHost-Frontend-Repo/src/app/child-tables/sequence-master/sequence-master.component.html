@@ -1,0 +1,116 @@
+<div class="masterData p-4">
+    <div class="d-flex justify-content-end">
+      <div class="col-2 d-flex align-items-center justify-content-around mr-2">
+        <a routerLink="add"><button id="add" ><img src="../../../assets/images/addicon2.png" alt=""></button></a>
+        <button id="edit" (click)="edit()"><img src="../../../assets/images/editicon2.png" alt=""></button>
+        <button id="delete" (click)="delete()"><img src="../../../assets/images/deleteicon2.png" alt=""></button>
+      </div>
+      <div class="col-3 ml-2">
+        <mat-form-field class="col-12" appearance="standard">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        </mat-form-field>
+      </div>
+    </div>
+    <div >
+        <form [formGroup]="sequences" (ngSubmit)="modifysequence()" name="sendmail">
+            <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+                  <div matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox *ngIf="isDelete || isEdit" (change)="$event ? masterToggle() : null"
+                                          [checked]="selection.hasValue() && isAllSelected()"
+                                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+                            </mat-checkbox>
+                          </th>
+                          <td mat-cell *matCellDef="let row" class="">
+                            <mat-checkbox *ngIf="isDelete || isEdit" (click)="select()"
+                                          (change)="$event ? selection.toggle(row) : null"
+                                          [checked]="selection.isSelected(row) " >
+                            </mat-checkbox>
+                            <button  *ngIf="isSelect && !isDelete" id="edit" (click)="logSelection()" style="margin-left: 5px;"><img src="../../../assets/images/editicon2.png" width="20px" alt=""></button>
+                          </td>
+                </div>
+                 
+                <!-- ID Column -->
+                <ng-container matColumnDef="Sno">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> S.No </th>
+                    <td mat-cell *matCellDef="let row ; let i = index" >
+                        <div *ngIf="row.status == 'Active'">
+                           <span>{{i + 1}}</span>
+                        </div>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row ; let i = index" >
+                    <div *ngIf="row.status == 'Active'">
+                       <span>{{row.Def_Sequence_ID}}</span>
+                    </div>
+                </td>
+                </ng-container>
+            
+                <!-- Progress Column -->
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="sequenceValue">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Sequence Value </th>
+                <td mat-cell *matCellDef="let row">
+                    <div *ngIf="selectedID != row.Def_Sequence_ID">
+                       <span>{{row.Def_Sequence_Value}}</span>
+                    </div>
+                    <div *ngIf="isChecked && selectedID == row.Def_Sequence_ID">
+                        <mat-form-field appearance="fill">
+                            <input matInput 
+                                value={{row.Def_SequenceValue}}
+                                type="text"
+                                required
+                                formControlName="sequenceTypeValue"
+                            >
+                        </mat-form-field>
+                    </div>
+                </td>
+                </ng-container>
+                <ng-container matColumnDef="sequenceTypeDescription">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Sequence Type Description </th>
+                    <td mat-cell *matCellDef="let row">
+                        <div *ngIf="selectedID != row.Def_Sequence_ID">
+                            <span>{{row.Def_Sequence_Description}}</span>
+                        </div>
+                      
+                        <div *ngIf="isChecked && selectedID == row.Def_Sequence_ID">
+                            <mat-form-field appearance="fill">
+                                <input matInput 
+                                    value={{row.Def_Sequence_Description}}
+                                    type="text"
+                                    required
+                                    formControlName="sequenceDescription"
+                                >
+                            </mat-form-field>
+                        </div>
+                    </td>
+                </ng-container>
+                <!-- Fruit Column -->
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+            
+        
+            </div>
+              <button mat-flat-button mat-raised-button color="primary" *ngIf="isEdit && !isDelete">Save & Update</button>
+        </form>
+    </div>
+   
+    <div>
+        <button mat-flat-button mat-raised-button color="primary" (click)="deleteCountry()" *ngIf="isDelete">Delete</button>
+        <mat-paginator [pageSizeOptions]="[ 10 ]" aria-label="Select page of masterData"></mat-paginator>
+    </div>
+</div>
+  
+  

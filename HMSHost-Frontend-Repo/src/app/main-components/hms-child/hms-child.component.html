@@ -1,0 +1,198 @@
+<div class="container">
+<!-- breadcrumbs starts-->
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" *ngFor="let nav of breadCrumbs">
+        <a class="breadcrumb-item Active" (click)="breadCrumbNavigation(nav)">{{ nav.label }}</a>
+      </li>
+    </ol>
+  </nav>       
+  
+          <!-- breadcrumbs ends-->
+
+<div class="spinner-border" role="status" *ngIf="isLoading">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<div class="child-hms" *ngIf="!isLoading">
+
+  <!-- Search Filter Starts-->
+
+  <div class="d-flex justify-content-end">
+
+    <div class="crud-images">
+        <button class="btn" (click)="urlNavigation()"><img src="../../../assets/images/addicon.png" alt=""></button>
+        <button class="btn" (click)="showCheckBox = true; crudAction = 'edit'"><img src="../../../assets/images/editicon.png" alt=""></button>
+        <button class="btn" (click)="showCheckBox = true; crudAction = 'delete'"><img src="../../../assets/images/deleteicon.png" alt=""></button>
+    </div>
+
+    <div class="search-bar">
+        <input
+          type="text"
+          name="search"
+          [(ngModel)]="searchText"
+          autocomplete="off"
+          placeholder="Search"
+          class="form-control"
+          id="searchText"
+        />
+    </div>
+
+  </div>
+
+   <!-- Search Filter Ends-->
+
+   <!-- table data Starts -->
+<div class="tabtp" style="overflow-x:auto;">
+<table class="table  table-sm my-3">
+
+    <thead>
+        <tr>
+            <th>SNo</th>
+            <th scope="col" *ngFor="let key of displayKeys">
+              <div *ngIf="key !== 'status'" placement="top" ngbTooltip={{key}}>{{ key }}</div>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <ng-container *ngFor="let ele of commonData | filter: searchText | slice : (currentPage - 1) * pageSize : (currentPage - 1) * pageSize + pageSize; let i = index;">
+            <tr scope="row" *ngIf="ele['status'] === 'Active'">
+                <td>
+                    <div>
+                      {{ pageSize * (currentPage - 1) + i + 1 }}
+                       <span class="form-check form-check-inline" *ngIf="showCheckBox">
+
+                          <input type="checkbox" class="form-check-input" [disabled]="isChecked && (isCheckedName!=ele[editableFields[0].key])" [name]="ele[editableFields[0].key]" (change)="updateCheckBoxData($event, ele)" />
+
+                          <span *ngIf="isChecked && ele[editableFields[0].key] == isCheckedName && crudAction !== 'delete'">
+                              <img (click)="buildForm(ele)" src="../../../assets/images/editicon.png" alt="">
+                          </span>
+
+                       </span>
+                    </div>
+                </td>
+
+                <td *ngFor="let val of editableFields">
+                    <div *ngIf="val.key !== 'status'">
+                        <div *ngIf="!isChecked || ele[editableFields[0].key] != isCheckedName" placement="start" ngbTooltip="{{ ele[val.key] }}">{{ ele[val.key] }}</div>
+                        <div *ngIf="isChecked && ele[editableFields[0].key] == isCheckedName && (crudAction === 'edit' || crudAction === 'delete')" placement="start" ngbTooltip="{{ ele[val.key] }}">{{ ele[val.key] }}</div>
+                        <div *ngIf="!val.editable && isChecked && ele[editableFields[0].key] == isCheckedName && crudAction === 'update'" placement="start" ngbTooltip="{{ ele[val.key] }}">{{ ele[val.key] }}</div>
+                        <div *ngIf="val.editable && isChecked && ele[editableFields[0].key] == isCheckedName && crudAction === 'update'">
+
+                          <form [formGroup]="editForm" *ngIf="editForm">
+                            <div class="input-group input-group-sm" *ngIf="val.type !== 'dropdown'">
+                                <input
+                                  type="text"
+                                  [formControlName]="val.key"
+                                  class="form-control"
+                                  id="val.key"
+                                  [placeholder]="val.key"
+                                  [ngClass]="{
+                                    'is-invalid': submitted && formControls[val.key].errors
+                                  }"
+                                />
+                            </div>
+                            <div *ngIf="val.type === 'dropdown'">{{ dropdownList[val.key].value }}
+                              <select [formControlName]="val.key" id="field.label" class="form-control"
+                              [ngClass]="{ 'is-invalid': submitted && formControls[val.key].errors }" required="required">
+                                <option selected>{{ ele[val.key] }}</option>
+                                <option *ngFor="let obj of dropdownList[val.key]" [value]="obj['value']">{{ obj['label'] }}</option>
+                              </select>
+                            </div>
+                          </form>
+    
+                            <div
+                              *ngIf="submitted && formControls[val.key].errors"
+                              class="invalid-feedback"
+                            >
+                              <div *ngIf="formControls[val.key].errors['required']">
+                                {{ val.key }} is required
+                              </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        </ng-container>
+    </tbody>
+
+</table>
+</div>
+<div class="updcls"  *ngIf="crudAction === 'update'">
+    <button type="submit" (click)="updateData()" class="btn btn-success btn-sm">Update</button>
+</div>
+<div class="updcls" *ngIf="isChecked && crudAction === 'delete'">
+    <button type="submit" (click)="showDelBoxDialog()" class="btn btn-danger btn-sm">Delete</button>
+</div>
+
+   <!-- table data Ends -->
+
+  <!-- Delete Confirmation Starts -->
+</div>
+  <div class="modal" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title">Are you sure you want to delete the data?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <button type="button" class="btn btn-secondary" (click)="deleteEntry('Yes')" data-bs-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-primary deleno" (click)="deleteEntry('No')">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Ends -->
+
+    <!-- Modal -->
+
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body"><h1>{{ apiResponse }}</h1></div>
+        <div>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="navigation()">ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- pagination Starts -->
+
+   <div class="pagination" *ngIf="commonData">
+    <ngb-pagination [collectionSize]="commonData.length" [pageSize]="pageSize" [(page)]="currentPage" [boundaryLinks]="true">
+        <ng-template ngbPaginationPages let-page let-pages="pages">
+          <li class="ngb-custom-pages-item" *ngIf="pages.length > 0">
+            <div class="mb-3 d-flex flex-nowrap px-2">
+              <label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
+              <input
+                #i
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                class="form-control custom-pages-input"
+                id="paginationInput"
+                [value]="page"
+                [disabled]="true"
+                (keyup.enter)="selectPage(i.value)"
+                (blur)="selectPage(i.value)"
+                (input)="formatInput($any($event).target)"
+                aria-labelledby="paginationInputLabel paginationDescription"
+                style="width: 3rem"
+              />
+              <span id="paginationDescription" class="col-form-label text-nowrap px-2"> of {{pages.length}}</span>
+            </div>
+          </li>
+        </ng-template>
+    </ngb-pagination>
+   </div>
+
+   <!-- pagination Ends -->
+
+</div>

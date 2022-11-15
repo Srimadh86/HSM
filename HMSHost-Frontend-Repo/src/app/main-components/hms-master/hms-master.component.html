@@ -1,0 +1,87 @@
+<div class="container">
+  <!-- breadcrumbs starts-->
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" *ngFor="let nav of breadCrumbs">
+        <a class="breadcrumb-item Active" (click)="breadCrumbNavigation(nav)">{{ nav.label }}</a>
+      </li>
+    </ol>
+  </nav>       
+  
+          <!-- breadcrumbs ends-->
+
+<div class="spinner-border" role="status" *ngIf="isLoading">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<div class="masterData" *ngIf="!isLoading">
+
+                <!-- search bar starts -->
+
+                <div class="search-bar m-3">
+                  <input
+                    type="text"
+                    name="search"
+                    [(ngModel)]="searchText"
+                    autocomplete="off"
+                    placeholder="Search"
+                    class="form-control"
+                    id="searchText"
+                  />
+                </div>
+              
+                <!-- search bar ends -->
+              
+                <!-- table data starts -->
+              
+               <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Name</th>   
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let ele of mastersListData | filter: searchText | slice : (currentPage - 1) * pageSize : (currentPage - 1) * pageSize + pageSize">
+                    <tr>
+                      <th class="tsno" scope="row">{{ ele['SNO'] }}</th>
+                      <td class="dnme" (click)="dynamicUrlNavigation(ele['urlhint'], ele['name'])">{{ ele['name'] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              
+                  <!-- table data ends -->
+              
+                  <!-- pagination starts -->
+              
+                <div class="pagination" *ngIf="mastersListData">
+                  <ngb-pagination [collectionSize]="mastersListData.length" [pageSize]="pageSize" [(page)]="currentPage" [boundaryLinks]="true">
+                      <ng-template ngbPaginationPages let-page let-pages="pages">
+                        <li class="ngb-custom-pages-item" *ngIf="pages.length > 0">
+                          <div class="mb-3 d-flex flex-nowrap px-2">
+                            <label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
+                            <input
+                              #i
+                              type="text"
+                              inputmode="numeric"
+                              pattern="[0-9]*"
+                              class="form-control custom-pages-input"
+                              id="paginationInput"
+                              [value]="page"
+                              [disabled]="true"
+                              (keyup.enter)="selectPage(i.value)"
+                              (blur)="selectPage(i.value)"
+                              (input)="formatInput($any($event).target)"
+                              aria-labelledby="paginationInputLabel paginationDescription"
+                              style="width: 3rem"
+                            />
+                            <span id="paginationDescription" class="col-form-label text-nowrap px-2"> of {{pages.length}}</span>
+                          </div>
+                        </li>
+                      </ng-template>
+                    </ngb-pagination>
+                </div>
+              
+                  <!-- pagination ends -->
+</div>
+</div>

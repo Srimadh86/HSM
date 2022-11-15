@@ -1,0 +1,53 @@
+<div class="container">
+<!-- breadcrumbs starts-->
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" *ngFor="let nav of breadCrumbs">
+      <a class="breadcrumb-item Active" (click)="breadCrumbNavigation(nav)">{{ nav.label }}</a>
+    </li>
+  </ol>
+</nav>
+
+<!-- breadcrumbs ends-->
+
+<div class="create-form mt-5">
+  <form [formGroup]="createForm" (submit)="onSubmit()">
+    <div class="m-3" *ngFor="let field of selectedKeys">
+      <ng-container *ngIf="field.label !== 'status'">
+      <label for="field" class="form-label">{{ field.label }}</label>
+
+      <input *ngIf="field.type === 'input'" type="text" [formControlName]="field.label" class="form-control" id="field"
+        [placeholder]="field.label" [ngClass]="{ 'is-invalid': submitted && formControls[field.label].errors }" />
+
+      <select *ngIf="field.type === 'dropdown'" [formControlName]="field.label" id="field.label" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && formControls[field.label].errors }" required="required">
+        <option value disabled selected>Select {{ field.label }}</option>
+        <option *ngFor="let ele of dropdownList[field.label]" [value]="ele['value']">{{ ele['label'] }}</option>
+      </select>
+
+      <div *ngIf="submitted && formControls[field.label].errors" class="invalid-feedback">
+        <div *ngIf="formControls[field.label].errors['required']">
+          {{ field.label }} is required
+        </div>
+      </div>
+    </ng-container>
+    </div>
+    <button type="submit" class="btn btn-primary">Confirm & Save</button>
+  </form>
+
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h1>{{ apiResponse }}</h1>
+      </div>
+      <div>
+        <button type="submit" (click)="updateData()" class="btn btn-primary" data-bs-dismiss="modal">ok</button>
+      </div>
+    </div>
+  </div>
+</div>

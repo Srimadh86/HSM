@@ -1,0 +1,80 @@
+.file-container{
+    width : 450px;
+        height : 200px;
+        padding : 2rem;
+        text-align: center;
+        border:1px dashed #8FBDDF;
+        position:relative;
+        margin: 0 auto; 
+        background: #FFFFFF;  
+        box-sizing: border-box;
+
+width: 738px;
+height: 250px;
+
+
+background: #FFFFFF;
+border: 1px dashed #8FBDDF;
+border-radius: 15px; 
+    .file{
+        opacity: 0;
+        padding: 5rem;
+        width: 100%;
+        height: auto;
+    }   
+
+}
+.fileupload {    
+    background-position: center;
+    background-color: #ffffff;
+    height: 200px;
+    width: 100%;
+    cursor: pointer;
+    /* border: 2px dashed #0f68ff; */
+    border-radius: 6px;
+    margin-bottom: 25px;
+    background-position: center 28px;
+    
+}
+input {
+	opacity: 0;
+	position: absolute;
+	z-index: 2;
+	width : 100%;
+	top : 0;
+	left: 0;
+    height: 100%;
+    cursor: pointer;
+}
+
+.dropzone label {
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    border: 2px solid #BDEAF8;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #2A2A2F;
+    display: block;
+    color: #2A2A2F;
+    width: 140px;
+    margin: 0 auto;
+}
+.dropzone h3 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+}
+.dropzone h6 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;    
+    color: #8F8F91;
+}

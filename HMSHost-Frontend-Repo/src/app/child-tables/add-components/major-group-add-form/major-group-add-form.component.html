@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-content>
+        <div class="recognition">
+            <form [formGroup]="majors" (ngSubmit)="addmajor()" name="sendmail">
+            <div class="sourceUser">
+                <mat-form-field class="full-width" appearance="outline">
+                <mat-label> Major Group Name</mat-label>
+                    <input
+                    matInput
+                    required
+                    formControlName="majorGroupName"/>
+                </mat-form-field>
+            </div>
+                <button mat-flat-button >Confirm & Save</button>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

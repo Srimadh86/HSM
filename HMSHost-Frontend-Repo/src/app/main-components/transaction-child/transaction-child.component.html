@@ -1,0 +1,50 @@
+<div class="transaction-child">
+
+    <!-- can be implemented once API is ready -->
+
+    <!-- <div class="spinner-border" role="status" *ngIf="isLoading">
+        <span class="visually-hidden">Loading...</span>
+    </div> -->
+
+    <div class="mx-5">
+
+        <div class="d-flex justify-content-end">
+            <div class="crud-images">
+                <button class="btn" ><img src="../../../assets/images/editicon.png" alt=""></button>
+                <button class="btn"><img src="../../../assets/images/deleteicon.png" alt=""></button>
+            </div>
+
+            <div class="search-bar">
+                <input
+                  type="text"
+                  name="search"
+                  [(ngModel)]="searchText"
+                  autocomplete="off"
+                  placeholder="Search"
+                  class="form-control"
+                  id="searchText"
+                />
+            </div>
+        </div>
+
+        <div>
+            <h3>{{ transactionName }}</h3>
+
+            <table class="table table-striped table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th>SNo</th>
+                        <th *ngFor="let title of headers">{{ title.label }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ele of transactionData; let i = index;">
+                        <td>{{ i + 1 }}</td>
+                        <td *ngFor="let title of headers">{{ ele[title.label] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

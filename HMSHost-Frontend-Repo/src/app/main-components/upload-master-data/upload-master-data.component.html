@@ -1,0 +1,30 @@
+<div class="section d-flex justify-content-center align-items-center" style="height: 80vh">
+    <div class="file-container col-12 dropzone" >
+        <div class="fileupload"
+        appDragDropFileUpload 
+             >
+            <img src="../assets/images/drag-drop.png">          
+                <h3>Drag and Drop Files Here</h3>
+                <h6>Files Supported : .CSV or EXCEL</h6>
+                <h3>or</h3>
+            <input type="file" 
+            (change)="getFile($event)" 
+            name="avatars" 
+            #fileDropRef id="fileDropRef" 
+            class="files" 
+           
+            />      
+            <label for="fileDropRef">Choose File</label>  
+        </div>
+        <div *ngIf="file">
+        File Name: {{file.name}} <br/>
+        
+    </div><br />
+        <button mat-raised-button color="primary" (click)="uploadFile()">upload file</button>
+    </div>
+    
+</div>
+
+
+
+  

@@ -1,0 +1,45 @@
+.create-form {
+    width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 70px;
+}
+.create-form button.btn.btn-primary {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    padding: 8px 26px;
+    background-color: #00498A;
+}
+.form-control {
+    border: 1px solid #D6D6D6;
+    border-radius: 0px;
+}
+label.form-label {
+    color: #000000;
+    font-weight: 400;
+    font-size: 14px;
+}
+.modal-content {
+    width: 100%;
+    padding: 100px;
+}
+.breadcrumb-item+.breadcrumb-item {
+    text-decoration: underline;
+}
+.breadcrumb-item + .breadcrumb-item a {
+    cursor: pointer;
+}
+li.breadcrumb-item {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.breadcrumb li:nth-last-child(-n+1) a {
+    color: #ccc !important;
+}
+.breadcrumb li a.breadcrumb-item.Active {
+    color: #000;
+}
+.tabtp {
+    white-space: nowrap;
+}

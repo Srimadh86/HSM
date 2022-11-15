@@ -1,0 +1,12 @@
+.cdk-overlay-container .mat-dialog-container {
+    height: 300px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+.mat-dialog-actions {
+    padding: 8px 0;
+    display: block !important;
+}
+.cdk-overlay-pane {
+    height: 300px;
+}

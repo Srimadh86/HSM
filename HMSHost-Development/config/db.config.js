@@ -4,7 +4,7 @@ module.exports = {
     PASSWORD:"Strike9",
     // PASSWORD:"Ramachandra123!",
     //DB:"Comp_Store_Restaurant_Data",
-    DB:"HMSHost",
+    DB:"AllinOne",
     dialect:"mysql",
     port:"3307",
     pool:
